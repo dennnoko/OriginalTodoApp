@@ -23,4 +23,9 @@ abstract class Database: RoomDatabase() {
             return appDataase!!
         }
     }
+
+    suspend fun addTask(title: String, detail: String) {
+        val newTask = AppEntity(title = title, detail = detail)
+        appDao().insertTask(newTask)
+    }
 }
