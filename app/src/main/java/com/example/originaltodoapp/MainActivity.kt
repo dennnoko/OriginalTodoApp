@@ -32,7 +32,11 @@ import com.example.originaltodoapp.roomComponents.Database
 import com.example.originaltodoapp.ui.theme.OriginalTodoAppTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var appDatabase: Database
     override fun onCreate(savedInstanceState: Bundle?) {
+        //database初期化
+        appDatabase = Database.getdb(this)
+
         super.onCreate(savedInstanceState)
         setContent {
             OriginalTodoAppTheme(darkTheme = false) {
@@ -41,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    MainScreen(appDatabase)
                 }
             }
         }
