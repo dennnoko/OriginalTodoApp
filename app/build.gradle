@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    //add to resolve room dependencies error
+    id 'kotlin-kapt'
 }
 
 android {
@@ -47,6 +49,14 @@ android {
 }
 
 dependencies {
+    //roomのバージョンを変数にいれておく
+    def room_version = "2.5.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    //Databaseクラスまで行ったときに表示されたエラーの解消
+    implementation 'androidx.room:room-ktx:2.5.0'
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
